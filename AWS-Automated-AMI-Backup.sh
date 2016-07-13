@@ -59,8 +59,8 @@ b=0
 echo $'\n\n'"ADDITIONS (new images)" $'\n' >> output.txt
 for i in ${MACHINES[@]}
 do
-   # Run AWS image backup.
-   $EC2_HOME/bin/ec2-create-image $i --name "${NAMES[$b]} $(date "+%Y-%m-%d %H%M%S")" --aws-access-key $AWS_ACCESS_KEY --aws-secret-key $AWS_SECRET_KEY --description "$i - $(date +%c)" >> output.txt
+   # Run AWS image backup. With no-reboot option (no-reboot ensures that instances are not rebooted while AMI creation takes place.)
+   $EC2_HOME/bin/ec2-create-image $i --name "${NAMES[$b]} $(date "+%Y-%m-%d %H%M%S")" --aws-access-key $AWS_ACCESS_KEY --aws-secret-key $AWS_SECRET_KEY --description "$i - $(date +%c)" --no-reboot >> output.txt
 
  if [ $? -ne 0 ]
  then
